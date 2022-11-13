@@ -15,12 +15,15 @@ import javax.persistence.Table;
 public class Cliente implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     
     private String nombre;
+    
     private String direccion;
+    
     private String informes;
+    
     private String idFalla;   
 
     public Long getId() {
@@ -33,6 +36,16 @@ public class Cliente implements Serializable {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public Cliente() {
+    }
+
+    public Cliente( String nombre, String direccion, String informes, String idFalla) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.informes = informes;
+        this.idFalla = idFalla;
     }
 
     public void setNombre(String nombre) {
