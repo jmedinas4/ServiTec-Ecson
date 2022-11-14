@@ -31,6 +31,8 @@ public class ClienteControlador {
         List<Falla> fallas;
         modelo.addAttribute("clientes", servicio.listarTodosLosClientes());
         System.out.println("desde aca");
+        
+        
         for (Cliente listado : servicio.listarTodosLosClientes()) {
 //            fallas= listado.getFallas();
             System.out.println("dir = " + listado.getDireccion());
