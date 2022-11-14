@@ -16,7 +16,7 @@ public class ClienteServicioImpl implements IClienteServicio{
     private ClienteRepositorio repositorio; 
     
     @Override
-    public List<Cliente> listarTodosLosEstudiantes() {
+    public List<Cliente> listarTodosLosClientes() {
       return repositorio.findAll();
     }
     

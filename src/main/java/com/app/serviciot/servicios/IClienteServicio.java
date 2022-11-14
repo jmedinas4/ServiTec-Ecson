@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IClienteServicio  {
     
-    public List<Cliente> listarTodosLosEstudiantes();
+    public List<Cliente> listarTodosLosClientes();
     
 }

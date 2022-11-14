@@ -9,21 +9,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
  
 @Controller
-
 public class AplicacionController {
-    @Autowired
-    private IClienteServicio servicio; 
+    
     
     
     @GetMapping("/")
     public String pagInicio(){
-        return "index";
+        return "redirect:/cliente/reportar";
     }
     
-    @GetMapping("/estudiantes")
-    public String listarClientes(Model modelo){
-        modelo.addAttribute("clientes",  servicio.listarTodosLosEstudiantes());
-        return "index";
-    }
+   
     
 }
