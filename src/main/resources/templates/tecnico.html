@@ -20,34 +20,86 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-
                 </div>
             </div>
         </nav>
 
 
         <main class="container">
-            <div th:if="${tecnico}">
-                <h1 class="text-center" th:text="${'Hola!  '+tecnico.nombre}"></h1>
-              
-            </div>
 
-            <div th:if="${tecnico}">
-                <h2 th:text="${tecnico.id}"></h2>
-                <h2 th:text="${tecnico.horario}"></h2>
-            </div>
+
             <h1 class="text-center" th:unless="${tecnico}">El tecnico no existe</h1>
-        </main>
 
 
-        <!--    <ul th:each="variable : ${tecnicos}">
-             
-              <li  th:text="${variable.id}"></li>
-              <li  th:text="${variable.horario}"></li>
-             </ul>-->
+            <div th:if="${tecnico}">
+                <div class="card mt-2  card text-bg-light mb-3 text-primary" >
+                    <div class="" th:if="${tecnico}">
+                        <h1 class="text-center fs-1 fw-bold" th:text="${'Hola!  '+tecnico.nombre}"></h1>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img th:src="@{/images/calendario.png}" class="p-2" alt="icono" width="400em" height="400em"/>
+                        </div>
+
+                        <div class="col-md-8 ">
+                            <div class="card-body" >
+                                <h3 class="fs-2 " >Tus horarios son:</h3>
+                                <div th:each="variable : ${listaHorarios}"   th:with="resultado=${tecnico.validarOcupado({variable})}" class="d-grid gap-2" >
+                                    <!--aca le damos el valor al retorno valido-->
+                                    <div >
+                                       
+                                    </div>
+                                    
+                                    
+                                        
+                                    
+                                        <button type="button" th:if="${resultado}" class="m-2 btn btn-outline-success d-flex justify-content-between align-items-center">
+                                            
+                                            
+                                            <p  th:text="${variable}" class="m-0 fs-3"></p>
+                                            <span class="fs-3">Cita Asignada</span>
+                                            <img th:src="@{/images/calendar.svg}" class="p-1" alt="icono"/>
+                                            
+                                        </button>
+                                    
+                                    
+                                        <button type="button"  th:if="${!resultado}" class="m-2 btn btn-outline-primary d-flex justify-content-between align-items-center" disabled>
+                                            
+                                            
+                                            <p  th:text="${variable}" class="m-0 fs-3"></p>
+                                            <span class="fs-3">Cita Disponible</span>
+                                            <img th:src="@{/images/calendar.svg}" class="p-1" alt="icono"/>
+                                        </button>
+                                    
+                                    
+                                    
+
+                                    <!--<p  th:text="${tecnico.validarOcupado({variable})}"></p>-->
 
 
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
-    </body>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </ul>
+    </main>
+
+
+    <!--    <ul th:each="variable : ${tecnicos}">
+         
+          <li  th:text="${variable.id}"></li>
+          <li  th:text="${variable.horario}"></li>
+         </ul>-->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+</body>
 </html>

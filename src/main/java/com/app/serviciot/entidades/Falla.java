@@ -24,12 +24,12 @@ public class Falla implements Serializable{
     private Cliente cliente;
     @ManyToOne
     private Tecnico tecnico;
-    private Date fecha;
+    private String fecha;
 
     public Falla() {
     }
 
-    public Falla(String descripcion, Cliente cliente, Tecnico tecnico, Date fecha) {
+    public Falla(String descripcion, Cliente cliente, Tecnico tecnico, String fecha) {
         this.descripcion = descripcion;
         this.cliente = cliente;
         this.tecnico = tecnico;
@@ -70,11 +70,11 @@ public class Falla implements Serializable{
         this.tecnico = tecnico;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
     

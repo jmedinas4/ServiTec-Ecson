@@ -9,7 +9,7 @@
         <link th:href="@{/css/estilos.css}" rel="stylesheet"/>
     </head>
     <body>
-
+        
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
             <div class="container container-fluid">
                 <img th:src="@{/images/icon.png}" class="p-2" alt="icono" width="70" height="70"/>
@@ -25,53 +25,50 @@
                 </div>
             </div>
         </nav>
+        
 
 
         <div class="container text-center mt-2 ">
-             <form th:action="@{/cliente/reportar}" method="POST" >
-            <div class="row ">
-               
-                <div class="col">
-                    <div class="card border border-dark text-bg-light mb-3" style="height:25rem;" th:object="${miCliente}" >
-                        <div class="d-flex justify-content-center  "><img th:src="@{/images/error.png}" class="p-2 text-center" alt="icono" style="width: 20rem; height:10rem;" /></div>
+            <form th:action="@{/cliente/reporte}" method="POST" >
+                <div class="row ">
 
-                        <div class="card-body m-2">
-                            <div class="form-floating mb-3 ">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Digite Nombre" th:field="*{nombre}">
-                                <label for="floatingInput">Nombre</label>
+                    <div class="col">
+                        <div class="card border border-dark text-bg-light mb-3" style="height:25rem;" th:object="${miCliente}" >
+                            <div class="d-flex justify-content-center  "><img th:src="@{/images/error.png}" class="p-2 text-center" alt="icono" style="width: 20rem; height:10rem;" /></div>
+
+                            <div class="card-body m-2">
+                                <div class="form-floating mb-3 ">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Digite Nombre" th:field="*{nombre}">
+                                    <label for="floatingInput">Nombre</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Digite Direccion" th:field="*{direccion}">
+                                    <label for="floatingInput">Direccion</label>
+                                </div>
+
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Digite Direccion" th:field="*{direccion}">
-                                <label for="floatingInput">Direccion</label>
-                            </div>
-                            
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card border border-dark text-bg-light mb-3" style="height:25rem;" th:object="${miFalla}">
-                        <p class="card-text p-2">Por favor, Cuentanos todo lo sucedido, enseguida te ayudaremos a solucionar tu problema</p>
-                        <div class="card-body">
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" th:field="*{descripcion}"></textarea>
-                                <label for="floatingTextarea2">Comentarios</label>
+                    <div class="col">
+                        <div class="card border border-dark text-bg-light mb-3" style="height:25rem;" th:object="${miFalla}">
+                            <p class="card-text p-2">Por favor, Cuentanos todo lo sucedido, enseguida te ayudaremos a solucionar tu problema</p>
+                            <div class="card-body">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" th:field="*{descripcion}"></textarea>
+                                    <label for="floatingTextarea2">Comentarios</label>
+                                </div>
+                                <button class="btn btn-primary p-2 m-2" type="submit">Reportar Falla</button>
                             </div>
-                            <button class="btn btn-primary p-2 m-2" type="submit">Reportar Falla</button>
                         </div>
                     </div>
+
                 </div>
-                
-            </div>
-        </form>   
+            </form>   
         </div>
-        <ul th:each="variable : ${clientes}">
-
-            <li  th:text="${variable.id}"></li>
-            <li  th:text="${variable.direccion}"></li>
-        </ul>
-
-
+       
+        
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+        
     </body>
 </html>

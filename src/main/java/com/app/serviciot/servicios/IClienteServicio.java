@@ -10,4 +10,5 @@ public interface IClienteServicio  {
     
     public List<Cliente> listarTodosLosClientes();
     
+    public void guardarCliente(Cliente cli);
 }

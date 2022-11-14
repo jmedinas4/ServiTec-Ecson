@@ -20,6 +20,13 @@ public class Tecnico implements Serializable{
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "serial")
     private Long id;
+    private String nombre;
+    private String horario;
+    private String horarioOcupado;
+    @OneToMany(mappedBy =  "tecnico")
+    private List<Falla> fallas;
+    @OneToMany(mappedBy =  "tecnico")
+    private List<Falla> informes;
 
     public String getNombre() {
         return nombre;
@@ -32,17 +39,25 @@ public class Tecnico implements Serializable{
         this.fallas = fallas;
         this.informes = informes;
     }
-
+    
+    
+    public boolean  validarOcupado(String text){
+        String[] horarios= horario.split(",");
+        String[] horariosO= horarioOcupado.split(",");
+//        if (horarioOcupado==null) {
+//            return false;
+//        }
+        for (String hora : horariosO) {
+            if (hora.equals(text)) {
+                return true;
+            }
+        }
+        return false;
+    }
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    private String nombre;
-    private String horario;
-    private String horarioOcupado;
-    @OneToMany(mappedBy =  "tecnico")
-    private List<Falla> fallas;
-    @OneToMany(mappedBy =  "tecnico")
-    private List<Falla> informes;
+    
 
     public Tecnico(String horario, String horarioOcupado, List<Falla> fallas, List<Falla> informes) {
         this.horario = horario;

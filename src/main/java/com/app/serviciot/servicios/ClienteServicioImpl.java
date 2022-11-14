@@ -19,5 +19,10 @@ public class ClienteServicioImpl implements IClienteServicio{
     public List<Cliente> listarTodosLosClientes() {
       return repositorio.findAll();
     }
+
+    @Override
+    public void guardarCliente(Cliente cli) {
+        repositorio.save(cli);
+    }
     
 }
