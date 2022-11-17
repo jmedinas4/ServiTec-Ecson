@@ -20,7 +20,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+                    
 
                 </div>
             </div>
@@ -31,22 +31,22 @@
         <div class="container text-center mt-2 ">
             <form th:action="@{/cliente/reporte}" method="POST" >
                 <div class="row ">
-
+                   
                     <div class="col">
                         <div class="card border border-dark text-bg-light mb-3" style="height:25rem;" th:object="${miCliente}" >
                             <div class="d-flex justify-content-center  "><img th:src="@{/images/error.png}" class="p-2 text-center" alt="icono" style="width: 20rem; height:10rem;" /></div>
 
                             <div class="card-body m-2">
                                 <div class="form-floating mb-3 ">
-                                    <input type="text" class="form-control" id="floatingInput" placeholder="Digite Nombre" th:field="*{nombre}">
+                                    <input type="text" class="form-control" id="floatingInput" required placeholder="Digite Nombre" th:field="*{nombre}">
                                     <label for="floatingInput">Nombre</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="floatingInput" placeholder="Digite Direccion" th:field="*{direccion}">
+                                    <input type="text" class="form-control" id="floatingInput" required placeholder="Digite Direccion" th:field="*{direccion}">
                                     <label for="floatingInput">Direccion</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingInput" placeholder="Digite Correo" th:field="*{correo}">
+                                    <input type="email" class="form-control" id="floatingInput" required placeholder="Digite Correo" th:field="*{correo}">
                                     <label for="floatingInput">Correo</label>
                                 </div>
                                 
@@ -58,7 +58,7 @@
                             <p class="card-text p-2">Por favor, Cuentanos todo lo sucedido, enseguida te ayudaremos a solucionar tu problema</p>
                             <div class="card-body">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" th:field="*{descripcion}"></textarea>
+                                    <textarea class="form-control" placeholder="Leave a comment here" required id="floatingTextarea2" style="height: 100px" th:field="*{descripcion}"></textarea>
                                     <label for="floatingTextarea2">Comentarios</label>
                                 </div>
                                 <button class="btn btn-primary p-2 m-2" type="submit">Reportar Falla</button>

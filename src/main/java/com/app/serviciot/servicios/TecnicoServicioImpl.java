@@ -1,6 +1,9 @@
 package com.app.serviciot.servicios;
 
+import com.app.serviciot.entidades.Falla;
+import com.app.serviciot.entidades.Informe;
 import com.app.serviciot.entidades.Tecnico;
+import com.app.serviciot.repositorio.FallaRepositorio;
 import com.app.serviciot.repositorio.TecnicoRepositorio;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +19,9 @@ public class TecnicoServicioImpl implements ITecnicoServicio {
 
     @Autowired
     private TecnicoRepositorio repositorio;
+    
+    @Autowired
+    private FallaRepositorio repositorioF;
 
     @Override
     public List<Tecnico> listarTodosLosTecnicos() {
@@ -114,4 +120,71 @@ public class TecnicoServicioImpl implements ITecnicoServicio {
         
         return cadenaNueva;
     }
+
+    @Override
+    public Long buscarIdFallaPorSeleccion(int tecnicoId, String horarioSeleccionado) {
+       
+        Long result =0L;
+        
+        List<Falla> fallas = repositorioF.findAll();
+        
+        for (Falla falla : fallas) {
+            if (falla.getTecnico_id().getId()== tecnicoId && falla.getFecha().equals(horarioSeleccionado) ) {
+                result=falla.getId();
+            }
+            
+        }
+        System.out.println("el id de la falla es = " + result);
+        
+        return result;
+    }
+    
+    @Override
+    public void ajustarHorario(int tecnicoId, String horarioSeleccionado , Informe informe) {
+       Long result =0L;
+        
+        List<Falla> fallas = repositorioF.findAll();
+        
+        for (Falla falla : fallas) {
+            if (falla.getTecnico_id().getId()== tecnicoId && falla.getFecha().equals(horarioSeleccionado) ) {
+                result=falla.getId();
+            }
+            
+        }
+        Falla fallaActual = repositorioF.findById(result).get();
+        fallaActual.setInforme_id(informe);
+        repositorioF.save(fallaActual);
+       
+        Tecnico tecnico = repositorio.findById(Long.parseLong(String.valueOf(tecnicoId))).get();
+        System.out.println("el tecnico es  = " + tecnico.getNombre() );
+        System.out.println("hiorarioOcupado:"+ tecnico.getHorarioOcupado());
+        System.out.println("horario por parametro"+horarioSeleccionado);
+        List<String> horarioO = Arrays.asList(tecnico.getHorarioOcupado().split(",")) ;
+        String actual="";
+        if (!horarioO.isEmpty()) {
+            for (String horarioOcupadoIndividual : horarioO) {
+                if (horarioSeleccionado.equals(horarioOcupadoIndividual)) {
+                    
+                }else{
+                    if (horarioOcupadoIndividual.equals("null")) {
+                        
+                    }else{
+                        actual+=horarioOcupadoIndividual+",";
+                    }
+                    
+                }
+            }
+        }
+        tecnico.setHorarioOcupado(actual);
+        repositorio.save(tecnico);
+
+    }
+
+    @Override
+    public Optional<Falla> buscarFallaPorId(Long id) {
+        return repositorioF.findById(id);
+    }
+
+    
+    
 }

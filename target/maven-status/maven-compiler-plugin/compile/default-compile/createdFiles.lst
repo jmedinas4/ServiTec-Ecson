@@ -1,0 +1,15 @@
+com\app\serviciot\controladores\ClienteControlador.class
+com\app\serviciot\repositorio\TecnicoRepositorio.class
+com\app\serviciot\entidades\Tecnico.class
+com\app\serviciot\servicios\ITecnicoServicio.class
+com\app\serviciot\dto\ClienteDto.class
+com\app\serviciot\entidades\Falla.class
+com\app\serviciot\AppServicioApplication.class
+com\app\serviciot\servicios\TecnicoServicioImpl.class
+com\app\serviciot\repositorio\ClienteRepositorio.class
+com\app\serviciot\servicios\ClienteServicioImpl.class
+com\app\serviciot\entidades\Cliente.class
+com\app\serviciot\controladores\AplicacionController.class
+com\app\serviciot\controladores\TecnicoControlador.class
+com\app\serviciot\servicios\IClienteServicio.class
+com\app\serviciot\entidades\Informe.class

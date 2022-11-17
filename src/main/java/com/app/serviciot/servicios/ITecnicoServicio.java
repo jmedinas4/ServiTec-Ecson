@@ -2,6 +2,8 @@
 package com.app.serviciot.servicios;
 
 
+import com.app.serviciot.entidades.Falla;
+import com.app.serviciot.entidades.Informe;
 import com.app.serviciot.entidades.Tecnico;
 import java.util.HashMap;
 import java.util.List;
@@ -17,5 +19,9 @@ public interface ITecnicoServicio  {
     
     public HashMap<Optional<Tecnico>, String> buscarOptimo();
     
+    public Optional<Falla> buscarFallaPorId(Long id);
     
+    public Long buscarIdFallaPorSeleccion(int tecnicoId, String horarioSeleccionado);
+    
+    public void ajustarHorario(int tecnicoId, String horarioSeleccionado, Informe informe);
 }

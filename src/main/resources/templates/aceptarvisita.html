@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Servicio Tecnico</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link th:href="@{/css/estilos.css}" rel="stylesheet"/>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+            <div class="container container-fluid">
+                <img th:src="@{/images/icon.png}" class="p-2" alt="icono" width="70" height="70"/>
+                <h1 class="navbar-brand fs-2 p-2" th:text="${'Hola! '+nombret}+' ,bienvenido al sistema de reporte'"> </h1>
+
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+                </div>
+            </div>
+        </nav>
+       
+
+        <!--        <li  th:text="${hora}"></li>-->
+        <div class="card mb-3 text-bg-light container mt-3" style="">
+            <div class="row g-0">
+                <div class="col-md-6 p-2">
+                    <img th:src="@{/images/tools.png}" class="p-2" alt="icono" width="500" height="500" />
+                </div>
+                
+                <div class="col-md-6 p-3">
+                    <form th:action="@{/tecnico/reporto/} + ${id} +'/' + ${hora}" th:object="${informe}" method="POST">
+                    <div class="card-body">
+                        <p class="card-text fs-2" th:text="${'Cuentanos como te fue con tu cliente '+nombrecliente}"></p>
+                        <p class="card-text fs-3" >Solucionaste el problema?</p>
+                        <div class="d-flex flex-row mb-3">
+                            <input type="radio" class="btn-check " name="options-outlined" id="success-outlined" value="True"  th:field="*{solucionado}" autocomplete="off" checked>
+                            <label class="btn btn-outline-success mx-5 px-5 " for="success-outlined">Si</label>
+                            <input type="radio" class="btn-check m-2 " name="options-outlined" id="danger-outlined" value="False" th:field="*{solucionado}" autocomplete="off">
+                            <label class="btn btn-outline-danger mx-5 px-5" for="danger-outlined">No</label>
+                        </div>
+
+                    </div>
+                    <div>
+                        <div  >
+                                <div class="form-floating">
+                                    <textarea class="form-control" th:field="*{comentarios}" placeholder="Leave a comment here" required id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Diligencia lo sucedido por favor</label>
+                                </div>
+
+                            
+                                <button   class="btn btn-primary p-2 mt-2" type="submit">Enviar reporte</button>
+                            
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                 
+            </div>
+        </div>
+        <!--     
+              <li  th:text="${variable.id}"></li>
+              <li  th:text="${variable.direccion}"></li>-->
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    </body>
+</html>

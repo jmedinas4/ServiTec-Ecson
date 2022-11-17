@@ -17,19 +17,9 @@ public class Informe implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "serial")
     private Long id;
-    @ManyToOne
-    private Cliente cliente;
-    @ManyToOne
-    private Tecnico tecnico;
-    private boolean soluciionado;
+    
+    private String solucionado;
     private String comentarios;
-
-    public Informe(Cliente cliente, Tecnico tecnico, boolean soluciionado, String comentarios) {
-        this.cliente = cliente;
-        this.tecnico = tecnico;
-        this.soluciionado = soluciionado;
-        this.comentarios = comentarios;
-    }
 
     public Informe() {
     }
@@ -42,28 +32,16 @@ public class Informe implements Serializable {
         this.id = id;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public String getSolucionado() {
+        return solucionado;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public String isSolucionado() {
+        return solucionado;
     }
 
-    public Tecnico getTecnico() {
-        return tecnico;
-    }
-
-    public void setTecnico(Tecnico tecnico) {
-        this.tecnico = tecnico;
-    }
-
-    public boolean isSoluciionado() {
-        return soluciionado;
-    }
-
-    public void setSoluciionado(boolean soluciionado) {
-        this.soluciionado = soluciionado;
+    public void setSolucionado(String solucionado) {
+        this.solucionado = solucionado;
     }
 
     public String getComentarios() {

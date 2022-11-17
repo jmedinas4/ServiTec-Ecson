@@ -29,12 +29,12 @@
 
 
             <h1 class="text-center" th:unless="${tecnico}">El tecnico no existe</h1>
-
-
+            
+<!--            <h1  th:text="${id}">sadsd</h1>-->
             <div th:if="${tecnico}">
                 <div class="card mt-2  card text-bg-light mb-3 text-primary" >
                     <div class="" th:if="${tecnico}">
-                        <h1 class="text-center fs-1 fw-bold" th:text="${'Hola!  '+tecnico.nombre}"></h1>
+                        <h1 class="text-center fs-1 fw-bold" th:text="${'Hola '+tecnico.nombre+' !Es un gusto saludarte.'}"></h1>
                     </div>
                     <div class="row g-0">
                         <div class="col-md-4">
@@ -44,23 +44,23 @@
                         <div class="col-md-8 ">
                             <div class="card-body" >
                                 <h3 class="fs-2 " >Tus horarios son:</h3>
+<!--                                <h1 th:text="${id}"></h1>-->
+<!--                                <form th:action="@{/tecnico/formulario/}+${id}+'/'">-->
+                                    
+<!--                                    <h1 id="miid" th:text="${miid}">sadsd</h1>-->
                                 <div th:each="variable : ${listaHorarios}"   th:with="resultado=${tecnico.validarOcupado({variable})}" class="d-grid gap-2" >
                                     <!--aca le damos el valor al retorno valido-->
-                                    <div >
-                                       
-                                    </div>
-                                    
-                                    
-                                        
-                                    
-                                        <button type="button" th:if="${resultado}" class="m-2 btn btn-outline-success d-flex justify-content-between align-items-center">
+                                        <!--type="submit"-->
+                                        <a  th:href="@{/tecnico/formulario/} + ${id}+'/'+${hora}" th:with="hora=${variable}" th:if="${resultado}" class="m-2 btn btn-outline-success d-flex justify-content-between align-items-center">
                                             
                                             
-                                            <p  th:text="${variable}" class="m-0 fs-3"></p>
+                                            <p  th:text="${variable}"   class="m-0 fs-3"></p>
+                                            
                                             <span class="fs-3">Cita Asignada</span>
+                                             
                                             <img th:src="@{/images/calendar.svg}" class="p-1" alt="icono"/>
                                             
-                                        </button>
+                                        </a>
                                     
                                     
                                         <button type="button"  th:if="${!resultado}" class="m-2 btn btn-outline-primary d-flex justify-content-between align-items-center" disabled>
@@ -72,19 +72,21 @@
                                         </button>
                                     
                                     
-                                    
+<!--                                    </form>-->
 
                                     <!--<p  th:text="${tecnico.validarOcupado({variable})}"></p>-->
 
-
+                                    
                                 </div>
 
-                            </div>
-                        </div>
 
+                            </div>
+                             <footer class="m-2 blockquote-footer">Recuerda que puedes hacer click en la cita para entrar en la ventana de reportes<cite title="Source Title"></cite></footer>
+                        </div>
+                        
                     </div>
                 </div>
-
+               
 
             </div>
 
