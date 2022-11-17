@@ -23,21 +23,32 @@ public class Cliente implements Serializable {
     private Long id;
      private String direccion; 
     private String nombre;
-    @OneToMany(mappedBy =  "cliente")
-    private List<Falla> fallas;
-    @OneToMany(mappedBy =  "cliente")
-    private List<Informe> informes;
+    private  String correo;
+//    @OneToMany(targetEntity=Falla.class )
+//    private List<Falla> fallas;
+//    @OneToMany(mappedBy =  "cliente_id",targetEntity=Informe.class )
+//    private List<Informe> informes;
 
     public Cliente() {
+        
     }
 
-    public Cliente(String direccion, String nombre, List<Falla> fallas, List<Informe> informes) {
+    public Cliente(String direccion, String nombre, String correo) {
         this.direccion = direccion;
         this.nombre = nombre;
-        this.fallas = fallas;
-        this.informes = informes;
+        this.correo = correo;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    
+   
     public Long getId() {
         return id;
     }
@@ -62,21 +73,21 @@ public class Cliente implements Serializable {
         this.nombre = nombre;
     }
 
-    public List<Falla> getFallas() {
-        return fallas;
-    }
-
-    public void setFallas(List<Falla> fallas) {
-        this.fallas = fallas;
-    }
-
-    public List<Informe> getInformes() {
-        return informes;
-    }
-
-    public void setInformes(List<Informe> informes) {
-        this.informes = informes;
-    }
+//    public List<Falla> getFallas() {
+//        return fallas;
+//    }
+//
+//    public void setFallas(List<Falla> fallas) {
+//        this.fallas = fallas;
+//    }
+//
+//    public List<Informe> getInformes() {
+//        return informes;
+//    }
+//
+//    public void setInformes(List<Informe> informes) {
+//        this.informes = informes;
+//    }
     
  
 }

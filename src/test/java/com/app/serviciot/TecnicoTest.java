@@ -1,5 +1,5 @@
 
-package com.app.demo;
+package com.app.serviciot;
 
 import com.app.serviciot.entidades.Tecnico;
 import com.app.serviciot.servicios.ITecnicoServicio;
@@ -17,19 +17,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 @SpringBootTest()
-@AutoConfigureMockMvc
 public class TecnicoTest {
     
     @Autowired()
     private ITecnicoServicio servicio;
     
-//    @Test
-//    public void probarConsultaAllTecnico(){
-//  
-//        List<Tecnico> rta = servicio.listarTodosLosTecnicos();
-//
-//        assertTrue(!rta.isEmpty());
-//    }
+    @Test
+    public void probarConsultaAllTecnico(){
+  
+        List<Tecnico> rta = servicio.listarTodosLosTecnicos();
+
+        assertTrue(!rta.isEmpty());
+    }
 
     
 }
