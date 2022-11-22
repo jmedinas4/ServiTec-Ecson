@@ -4,6 +4,7 @@ import com.app.serviciot.entidades.Falla;
 import com.app.serviciot.entidades.Informe;
 import com.app.serviciot.entidades.Tecnico;
 import com.app.serviciot.repositorio.FallaRepositorio;
+import com.app.serviciot.repositorio.InformeRepositorio;
 import com.app.serviciot.repositorio.TecnicoRepositorio;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +23,9 @@ public class TecnicoServicioImpl implements ITecnicoServicio {
     
     @Autowired
     private FallaRepositorio repositorioF;
+    
+    @Autowired
+    private InformeRepositorio repositorioInforme;
 
     @Override
     public List<Tecnico> listarTodosLosTecnicos() {
@@ -152,9 +156,12 @@ public class TecnicoServicioImpl implements ITecnicoServicio {
             
         }
         Falla fallaActual = repositorioF.findById(result).get();
-        fallaActual.setInforme_id(informe);
+        Informe informeIdFalla = fallaActual.getInforme_id();
+        informeIdFalla.setComentarios(informe.getComentarios());
+        informeIdFalla.setSolucionado(informe.getSolucionado());
+        repositorioInforme.save(informeIdFalla);
         repositorioF.save(fallaActual);
-       
+        
         Tecnico tecnico = repositorio.findById(Long.parseLong(String.valueOf(tecnicoId))).get();
         System.out.println("el tecnico es  = " + tecnico.getNombre() );
         System.out.println("hiorarioOcupado:"+ tecnico.getHorarioOcupado());

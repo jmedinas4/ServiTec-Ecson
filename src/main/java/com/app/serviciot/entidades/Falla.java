@@ -31,7 +31,7 @@ public class Falla implements Serializable{
     private Tecnico tecnico_id;
     private String fecha;
     @ManyToOne
-    @JoinColumn(name = "informe_id", nullable = true)
+    @JoinColumn(name = "informe_id",  nullable = true)
     private Informe informe_id;
 
     public Falla() {

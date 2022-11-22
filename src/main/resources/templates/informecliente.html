@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Servicio Tecnico</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link th:href="@{/css/estilos.css}" rel="stylesheet"/>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+            <div class="container container-fluid">
+                <img th:src="@{/images/icon.png}" class="p-2" alt="icono" width="70" height="70"/>
+                <a class="navbar-brand fs-2 p-2">Hola! Aqui puedes consultar el estado de la cita ECSON</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container d-flex justify-content-center">
+            <!--th:action="@{}" method="POST"-->
+            <form th:action="@{/consultaestado}"  method="post">
+                <div class="card  mt-2" style="width: 44rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Indicanos la siguiente informacion</h5>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Digite correo"  id="correo" name="correo"  th:value="${correo}" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+                            <span class="input-group-text" id="basic-addon2">@example.com</span>
+                        </div>
+                        
+                        
+<!--                        <a  th:href="@{/consultaestado/}+${correo}"></a>-->
+                        <button class="btn btn-primary" type="submit">Buscar Informe</button>
+                    </div>
+                </div>
+             </form>   
+            
+
+        </div>
+
+        <!--    <ul th:each="variable : ${clientes}">
+             
+              <li  th:text="${variable.id}"></li>
+              <li  th:text="${variable.direccion}"></li>
+             </ul>
+            <h2>sadasd</h2>-->
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    </body>
+</html>
