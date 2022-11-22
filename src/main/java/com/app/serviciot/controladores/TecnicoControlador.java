@@ -25,16 +25,18 @@ public class TecnicoControlador {
      @Autowired
     private IInformeServicio servicioInforme;
     
-    class Retorno{
-        String id;
-        String hora;
+    @GetMapping(value = {"/administracion"})
+    public String administracion(Model modelo) {
+        
+        modelo.addAttribute("tecnicos" ,servicio.listarTodosLosTecnicos() );
+        return "administracion";
     }
     
     @GetMapping("/tecnico/formulario/{id}/{hora}")
     public String pruebaSelect(@PathVariable("id") String id,@PathVariable("hora") String hora, Model modelo){
-        Informe informe = new Informe();
-        System.out.println("informeContenido = " + informe.getComentarios());
-        System.out.println("informeAceptado = " + informe.getSolucionado());
+        
+        
+       
         Long resultado = servicio.buscarIdFallaPorSeleccion(Integer.parseInt(id), hora);
         Falla falla= servicio.buscarFallaPorId(resultado).get();
 //        System.out.println("resultado = " + resultado);
@@ -45,14 +47,18 @@ public class TecnicoControlador {
         modelo.addAttribute("nombrecliente",falla.getCliente_id().getNombre());
         modelo.addAttribute("hora",hora);
         modelo.addAttribute("idfalla",resultado);
-        modelo.addAttribute("informe",informe);
+        Informe info = new Informe();
+        servicioInforme.guardarInforme(info);
+        modelo.addAttribute("informe",info);
         return "aceptarvisita";
     }
     @PostMapping("/tecnico/reporto/{id}/{hora}")
     public String acepatOk(@ModelAttribute("informe") Informe informe, @PathVariable String id,@PathVariable String hora, Model modelo) {
+         //servicioInforme.guardarInforme(informe);
         System.out.println("informeCOment = " + informe.getComentarios());
         System.out.println("informeSolu = " + informe.getSolucionado());
-        servicioInforme.guardarInforme(informe);
+        System.out.println("informeID" +informe.getId());
+
         servicio.ajustarHorario(Integer.parseInt(id), hora, informe);
         Long resultado = servicio.buscarIdFallaPorSeleccion(Integer.parseInt(id), hora);
         modelo.addAttribute("id", id);
@@ -79,6 +85,7 @@ public class TecnicoControlador {
             modelo.addAttribute("listaHorarios", listaHorarios);
             modelo.addAttribute("tecnico", optional.get());
             modelo.addAttribute("id", optional.get().getId());
+           
 //            modelo.addAttribute("retorno", new Retorno());
 
         } else {
@@ -92,7 +99,7 @@ public class TecnicoControlador {
     
     @GetMapping(value = {"/tecnico/{id}", "/tecnico"})
     public String vistaTecnico(@PathVariable Integer id, Model modelo) {
-        System.out.println("entro a get");
+        System.out.println("entro a get y su id es :"+id);
         modelo.addAttribute("id", id);
         Optional<Tecnico> optional;
         optional = servicio.findById(Long.valueOf(id));
